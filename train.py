@@ -113,12 +113,14 @@ def train_main(dataset,
         raise ValueError(
             "Can't get samples longer than window size: %s" % hparams.n_ctx)
 
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    target_engine = ''
+    
     # Use TPU if available
     if 'COLAB_TPU_ADDR' in os.environ:
         target_engine = 'grpc://' + os.environ['COLAB_TPU_ADDR']
         print("Using TPU: "+tpu_address)
-    config = tf.ConfigProto()
-    config.gpu_options.allow_growth = True
     
     with tf.Session(target=target_engine, config=config) as sess:
         context = tf.placeholder(tf.int32, [batch_size, None])
