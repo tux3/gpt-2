@@ -12,12 +12,9 @@ import time
 
 import model, sample, encoder
 
-#CHECKPOINT_DIR = 'checkpoint'
-#SAMPLE_DIR = 'samples'
-
 CHECKPOINT_DIR = 'checkpoint'
 GS_CHECKPOINT_DIR = 'gs://gpt2-finetune/checkpoint'
-SAMPLE_DIR = 'sample'
+SAMPLE_DIR = 'samples'
 
 def maketree(path):
     try:
