@@ -101,7 +101,7 @@ def train_main(dataset,
                run_name='run1',
                restore_from='latest',
                save_every=1000,
-               learning_rate=0.001):
+               learning_rate=0.0002):
 
     enc = encoder.get_encoder(model_name)
     hparams = model.default_hparams()
