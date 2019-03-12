@@ -115,7 +115,16 @@ def train_main(dataset,
 
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True
-    with tf.Session(config=config) as sess:
+    
+    # Use TPU
+    if 'COLAB_TPU_ADDR' in os.environ:
+        tpu_address = 'grpc://' + os.environ['COLAB_TPU_ADDR']
+        sess_param = tpu_address
+    else:
+        sess_param = config
+    
+    with tf.Session(sess_param) as sess:
+    #with tf.Session(config=config) as sess:
         context = tf.placeholder(tf.int32, [batch_size, None])
         np.random.seed(seed)
         tf.set_random_seed(seed)
