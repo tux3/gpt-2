@@ -15,8 +15,9 @@ import model, sample, encoder
 #CHECKPOINT_DIR = 'checkpoint'
 #SAMPLE_DIR = 'samples'
 
-CHECKPOINT_DIR = 'gs://gpt2-finetune/checkpoint'
-SAMPLE_DIR = 'gs://gpt2-finetune/sample'
+CHECKPOINT_DIR = 'checkpoint'
+GS_CHECKPOINT_DIR = 'gs://gpt2-finetune/checkpoint'
+SAMPLE_DIR = 'sample'
 
 def maketree(path):
     try:
@@ -155,7 +156,7 @@ def train_main(dataset,
 
         if restore_from == 'latest':
             ckpt = tf.train.latest_checkpoint(
-                os.path.join(CHECKPOINT_DIR, run_name))
+                os.path.join(GS_CHECKPOINT_DIR, run_name))
             if ckpt is None:
                 # Get fresh GPT weights if new run.
                 ckpt = tf.train.latest_checkpoint(
