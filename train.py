@@ -191,7 +191,7 @@ def train_main(dataset,
                              'model-{}').format(counter))
             saver.save(
                 sess,
-                os.path.join(CHECKPOINT_DIR, run_name, 'model'),
+                os.path.join(GS_CHECKPOINT_DIR, run_name, 'model'),
                 global_step=counter)
             with open(os.path.join(CHECKPOINT_DIR, run_name, 'counter'),
                       'w') as fp:
