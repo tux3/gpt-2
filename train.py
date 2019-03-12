@@ -120,6 +120,7 @@ def train_main(dataset,
     if 'COLAB_TPU_ADDR' in os.environ:
         tpu_address = 'grpc://' + os.environ['COLAB_TPU_ADDR']
         sess_param = tpu_address
+        print("Using TPU: "+tpu_address)
     else:
         sess_param = config
     
