@@ -213,6 +213,7 @@ def train_main(dataset,
 
         avg_loss = (0.0, 0.0)
         start_time = time.time()
+        last_time = start_time
 
         try:
             while True:
@@ -227,11 +228,15 @@ def train_main(dataset,
 
                 avg_loss = (avg_loss[0] * 0.99 + lv, avg_loss[1] * 0.99 + 1.0)
 
+                time_diff = time.time() - last_time
+                last_time = time.time()
+                
                 print(
-                    '[{counter} | {time:2.2f}] loss={loss:2.2f} avg={avg:2.2f}'
+                    '[{counter} | {t_total:2.1f}s | {t_diff:2.1f}s] loss={loss:2.2f} avg={avg:2.3f}'
                     .format(
                         counter=counter,
-                        time=time.time() - start_time,
+                        t_total=time.time() - start_time,
+                        t_diff=time_diff,
                         loss=lv,
                         avg=avg_loss[0] / avg_loss[1]))
 
